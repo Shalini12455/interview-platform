@@ -1,0 +1,26 @@
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-22",
+      "path": "C:\\Program Files\\Java\\jdk-22",
+      "default": true
+    }
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/target": true,
+    "**/.git": true
+  },
+  "editor.tabSize": 2,
+  "editor.fontSize": 14,
+  "editor.wordWrap": "on"
+}
