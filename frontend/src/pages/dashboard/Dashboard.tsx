@@ -14,14 +14,13 @@ const Dashboard: React.FC = () => {
   React.useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8080/api/interviews/my-interviews",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+        const apiUrl =
+          process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+        const response = await fetch(`${apiUrl}/interviews/my-interviews`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        );
+        });
         const interviews = await response.json();
         const completed = interviews.filter(
           (i: any) => i.status === "COMPLETED",
