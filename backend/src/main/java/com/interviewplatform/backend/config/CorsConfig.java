@@ -14,9 +14,11 @@ public class CorsConfig {
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
-    config.setAllowedOrigins(List.of(
+    config.setAllowedOriginPatterns(List.of(
         "http://localhost:3000",
-        "https://interview-platform-delta-eight.vercel.app"));
+        "https://*.vercel.app",
+        "https://interview-platform-delta-eight.vercel.app",
+        "https://interview-platform-4y4q5qeir-shalini12455s-projects.vercel.app"));
     config.setAllowedMethods(List.of(
         "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
     config.setAllowedHeaders(List.of("*"));
