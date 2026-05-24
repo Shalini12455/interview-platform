@@ -24,6 +24,7 @@ const Login: React.FC = () => {
       toast.error(error);
       clearAuthError();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

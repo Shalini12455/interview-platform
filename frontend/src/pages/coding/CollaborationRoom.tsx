@@ -33,7 +33,7 @@ const CollaborationRoom: React.FC = () => {
 
   useEffect(() => {
     if (!roomId) return;
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     wsService.connect(
       () => {
         setIsConnected(true);

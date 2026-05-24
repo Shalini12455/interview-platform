@@ -34,6 +34,7 @@ const InterviewSession: React.FC = () => {
       toast.error("Failed to load questions");
       navigate("/interview/setup");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interview]);
 
   const currentQuestion = questions[currentIndex];
