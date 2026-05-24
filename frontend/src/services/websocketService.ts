@@ -16,7 +16,8 @@ class WebSocketService {
   connect(onConnected: () => void, onError?: (error: any) => void) {
     this.client = new Client({
       webSocketFactory: () => {
-        return new WebSocket("ws://localhost:8080/ws");
+        const wsUrl = process.env.REACT_APP_WS_URL || "ws://localhost:8080/ws";
+        return new WebSocket(wsUrl);
       },
       onConnect: () => {
         console.log("WebSocket connected successfully!");
