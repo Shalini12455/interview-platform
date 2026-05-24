@@ -22,7 +22,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/interviews")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",
+    "https://interview-platform-delta-eight.vercel.app"
+})
 public class InterviewController {
 
   private final InterviewService interviewService;

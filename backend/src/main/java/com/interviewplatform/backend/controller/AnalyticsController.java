@@ -14,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/analytics")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",
+    "https://interview-platform-delta-eight.vercel.app"
+})
 public class AnalyticsController {
 
   private final AnalyticsService analyticsService;

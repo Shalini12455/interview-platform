@@ -17,7 +17,10 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",
+    "https://interview-platform-delta-eight.vercel.app"
+})
 public class CollaborationController {
 
   private final SimpMessagingTemplate messagingTemplate;
