@@ -22,5 +22,6 @@
   },
   "editor.tabSize": 2,
   "editor.fontSize": 14,
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
