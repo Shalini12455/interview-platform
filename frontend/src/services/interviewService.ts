@@ -42,15 +42,12 @@ export const interviewService = {
       answer,
       jobRole,
     });
-
-    // Handle both string and object responses
     try {
       if (typeof response.data === "string") {
         return JSON.parse(response.data);
       }
       return response.data;
     } catch (e) {
-      console.error("Failed to parse evaluation response:", response.data);
       return {
         score: 0,
         rating: "Poor",

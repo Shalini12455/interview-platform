@@ -18,11 +18,8 @@ export const resumeService = {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("jobRole", jobRole);
-
     const response = await api.post("/resume/analyze", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      headers: { "Content-Type": "multipart/form-data" },
     });
     return response.data;
   },

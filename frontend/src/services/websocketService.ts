@@ -14,22 +14,18 @@ class WebSocketService {
   private subscriptions: Map<string, any> = new Map();
 
   connect(onConnected: () => void, onError?: (error: any) => void) {
+    const wsUrl = process.env.REACT_APP_WS_URL || "ws://localhost:8080/ws";
     this.client = new Client({
-      webSocketFactory: () => {
-        const wsUrl = process.env.REACT_APP_WS_URL || "ws://localhost:8080/ws";
-        return new WebSocket(wsUrl);
-      },
+      webSocketFactory: () => new WebSocket(wsUrl),
       onConnect: () => {
-        console.log("WebSocket connected successfully!");
+        console.log("WebSocket connected!");
         onConnected();
       },
       onStompError: (frame) => {
         console.error("STOMP error:", frame);
         if (onError) onError(frame);
       },
-      onDisconnect: () => {
-        console.log("WebSocket disconnected");
-      },
+      onDisconnect: () => console.log("WebSocket disconnected"),
       onWebSocketError: (error) => {
         console.error("WebSocket error:", error);
         if (onError) onError(error);
@@ -38,7 +34,6 @@ class WebSocketService {
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
     });
-
     this.client.activate();
   }
 
@@ -54,23 +49,17 @@ class WebSocketService {
     roomId: string,
     callback: (message: CollaborationMessage) => void,
   ) {
-    if (!this.client || !this.client.connected) {
-      console.error("WebSocket not connected");
-      return;
-    }
-
+    if (!this.client || !this.client.connected) return;
     const subscription = this.client.subscribe(
       `/topic/room/${roomId}`,
       (message: IMessage) => {
         try {
-          const data = JSON.parse(message.body);
-          callback(data);
+          callback(JSON.parse(message.body));
         } catch (error) {
           console.error("Failed to parse message:", error);
         }
       },
     );
-
     this.subscriptions.set(roomId, subscription);
   }
 
@@ -133,14 +122,8 @@ class WebSocketService {
     destination: string,
     body: Partial<CollaborationMessage>,
   ) {
-    if (!this.client || !this.client.connected) {
-      console.error("WebSocket not connected");
-      return;
-    }
-    this.client.publish({
-      destination,
-      body: JSON.stringify(body),
-    });
+    if (!this.client || !this.client.connected) return;
+    this.client.publish({ destination, body: JSON.stringify(body) });
   }
 
   isConnected(): boolean {

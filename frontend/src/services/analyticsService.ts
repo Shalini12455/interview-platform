@@ -7,19 +7,9 @@ export interface AnalyticsData {
   acceptedSubmissions: number;
   averageScore: number;
   highestScore: number;
-  scoreHistory: Array<{
-    date: string;
-    score: number;
-    title: string;
-  }>;
-  interviewsByType: Array<{
-    type: string;
-    count: number;
-  }>;
-  weeklyActivity: Array<{
-    day: string;
-    interviews: number;
-  }>;
+  scoreHistory: Array<{ date: string; score: number; title: string }>;
+  interviewsByType: Array<{ type: string; count: number }>;
+  weeklyActivity: Array<{ day: string; interviews: number }>;
   currentStreak: number;
   resumeCount: number;
   averageAtsScore: number;

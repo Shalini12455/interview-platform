@@ -10,7 +10,6 @@ const api = axios.create({
   },
 });
 
-// Add JWT token to every request automatically
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -24,12 +23,10 @@ export const authService = {
     const response = await api.post<AuthResponse>("/auth/register", data);
     return response.data;
   },
-
   login: async (data: LoginRequest): Promise<AuthResponse> => {
     const response = await api.post<AuthResponse>("/auth/login", data);
     return response.data;
   },
-
   logout: () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
