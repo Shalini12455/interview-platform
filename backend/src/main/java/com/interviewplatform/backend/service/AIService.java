@@ -21,7 +21,7 @@ public class AIService {
 
   private final RestTemplate restTemplate = new RestTemplate();
   private static final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/" +
-      "gemini-2.5-flash:generateContent?key=";
+      "gemini-2.0-flash:generateContent?key=";
 
   public String generateInterviewQuestions(
       String jobRole, String difficulty, String type) {
