@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
@@ -137,6 +137,19 @@ function App() {
       <AppRoutes />
     </Provider>
   );
+  useEffect(() => {
+    // Wake up Render backend
+    fetch("https://interview-platform-ayid.onrender.com/api/auth/health").catch(
+      () => {},
+    );
+    // Ping every 14 minutes to prevent sleep
+    const interval = setInterval(() => {
+      fetch(
+        "https://interview-platform-ayid.onrender.com/api/auth/health",
+      ).catch(() => {});
+    }, 840000);
+    return () => clearInterval(interval);
+  }, []);
 }
 
 export default App;
